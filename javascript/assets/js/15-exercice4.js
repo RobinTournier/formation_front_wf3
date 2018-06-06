@@ -14,49 +14,54 @@ var membres = [
   ];
 
 // Creation d'une variable pseudo pour verifier la disponibilité.
-var pseudoUser  = document.getElementById('pseudo');
-var pseudoError = document.getElementsByClassName('pseudoError')[0];
-var bouton      = document.getElementById('submit');
-var age         = document.getElementById('age');
-var ageError    = document.getElementsByClassName('ageError')[0];
-var titre       = document.getElementById('Bienvenue ');
+var pseudo          = document.getElementById('pseudo');
+var email           = document.getElementById('email');
+var mdp             = document.getElementById('mdp');
+var bouton          = document.getElementById('submit');
+var age             = document.getElementById('age');
+var InscriptionForm = document.getElementById('InscriptionForm');
+var titre           = document.getElementById('Bienvenue ');
 
-// Fonction pour parcourir le tableau des utilisateurs
-function verifPseudo (){
-    for (let i = 0 ; i < membres.length; i++){ // boucle pour parcourir le tableau
-        if((pseudo === pseudoUser)) {// si pseudo identique afficher pseudoError
-            // pseudoError.setAttribute('display','block');
-            pseudoError.style.display = 'block'; // Afficher le message d'erruer
-            bouton.setAttribute('disabled', true); // desactiver le bouton sumbit
-            
+var pseudoError     = document.getElementsByClassName('pseudoError')[0];
+var ageError        = document.getElementsByClassName('ageError')[0];
+
+
+// -- ETAPE 1 & 3
+pseudo.addEventListener('input', function () {
+
+    // console.log(pseudo.value);
+    for( let i = 0 ; i < membres.length ; i++ ) {
+        
+        // console.log( membres[i] );
+
+        /**
+         * Si la saisie d'un pseudo en cours par mon utilisateur
+         * correspond à un pseudo dans mon tableau de membres...
+         * Alors, ma condition s'applique.
+         * NB : La condition vérifie la saisie de mon utilisateur
+         * pour tous les membres du tableau !
+         */
+        if( pseudo.value === membres[i].pseudo ) {
+
+                /**
+                 * Si je trouve une correspondance, j'affiche l'alerte
+                 * pseudoError, car le pseudo saisi par mon utilisateur
+                 * existe déjà dans le tableau de membre...
+                 */
+                pseudoError.style.display = "block";
+                submit.disabled = true;
+                break;
+
+                // console.log(true);
+
+        } else {
+
+            pseudoError.style.display = "none";
+            submit.disabled = false;
+            // console.log(false);
+
         }
-        console.log( pseudoUser);
+
     }
-}
-pseudoUser.addEventListener('input', verifPseudo); // appeler la fonction pour verifier le pseudo
 
-
-/*ETAPE 2 : L'inscription n'est possible qu'aux personnes majeurs de 18 ans.
-Vous devez donc vérifier que l'age saisi est bien supérieur ou égale à 18 ans.
-
-Si cette condition n'est pas valide, alors la notification ageError doit s'afficher et le bouton "submit" être désactivé.
-
-Quand l'utilisateur corrige son age, la situation revient à la normal. La notification ageError ne s'affiche plus et le bouton submit est de nouveau disponible.*/
-
-function verifAge (){
-    if(age <= 18) {
-        ageError.style.display = 'block';
-        bouton.setAttribute('disabled', true);
-    }
-}
-age.addEventListener('input', verifAge); 
-
-/*ETAPE 3 : 
-   
-Lors de la saisie du Pseudo, vous devrez afficher en temps réel dans le titre id "Bienvenue" : Bonjour [Pseudo] : Pseudo étant la saisie en cours de l'utilisateur.*/
-
-pseudoUser.addEventListener('input', afficherTitre);
-
-function afficherTitre() {
-    titre.appendChild('df');
-}
+});
