@@ -15,5 +15,6 @@ $(function(){
         var txt = $("<p></p>").text("Bonjour, " + nomComplet);
         $('body').append(txt);
 
+       
     });
 })

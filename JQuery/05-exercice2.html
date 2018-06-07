@@ -50,6 +50,41 @@
         |   de sa demande de contact.                      |
         |                                                  |
         ------------------------------------------------- */
+
+        $('#MonFormulaire').submit( function (){
+            $('#MonFormulaire').replaceWith(' <p>Bonjour : <strong>' + $('#fullname').val() + '</strong><br></p>  Vos coordonées: <strong>'+$('#email').val() + ' ' + $('#tel').val() + '</strong><br>Votre sujet: <strong>'+$('#sujet').val() + '</strong><br>Votre message: <strong>' + $('#message').val() +'</strong>');
+
+
+        });
+
+        // Corection
+
+        // 1 attente que le DOM soit bien chargé
+        $(function() {
+            //2 ecouter l'evènement submit du formulaire
+            $('#MonFormulaire').submit(function (event){
+                //3 stopper l'envoi du formulaire
+                event.preventDefault();
+
+                // récupération des information
+                let fullname    = $('#fullname').val();
+                let email       = $('#mail').val();
+                let tel       = $('#tel').val();
+                let sujet       = $('#sujet').val();
+                let message       = $('#message').val();
+
+                // 5 recupotulatif
+                $(this).replaceWith(`
+                    <p>
+                        Bonjour <strong>${fullname}</strong>
+                        <em> ( ${email} )</em> <br><br>
+                        Vous nous avez contacté au sujet de : ${sujet}</strong>.<br>
+                        Nous reviendrons vers vous dans les plus bref delais au <strong>${tel}</strong><br><br>
+                        <u>Ci-dessous votre message : </u><br>
+                        ${message}               
+                `)
+            })
+        })
     </script>
 </body>
 </html>
