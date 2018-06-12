@@ -69,15 +69,7 @@
     -->
 
     <main>
-        <input type="text" placeholder="Saisissez un terme à surligner..." id="markJS">
-        <section>
-            <header>
-                <h1>TITRE</h1>
-            </header>
-            <article>
-                MON CONTENU
-            </article>
-        </section>
+        <input type="text" name =keyword placeholder="Saisissez un terme à surligner..." id="markJS">
     </main>
    
     <!-- Intégration de jQuery -->
@@ -93,20 +85,66 @@
         
         // -- En attente de jQuery
         $(function() {
+        
             
             // -- 1. Un requète AJAX Simple
             $.ajax('https://jsonplaceholder.typicode.com/posts')
-            .done(function(data) {
-                for (let i=0; i<10; i++){
-                    console.log(data[i]);
+            .done(function(articles) {
+              /* for ( let i = 0 ; i< 5 ; i++ ){
+                    console.log(articles[i].title);
+                    console.log(articles[i].body);
+                    
+                    $(`
+                        <section>
+                            <header>
+                                <h1>${articles[i].title}</h1>
+                            </header>
+                            <article>
+                                ${articles[i].body}
+                            </article>
+                        </section>
+                    `).appendTo( $('main'));
                 }
-                
-              
-            });
+*/
+                    $.each(articles, function(index, articles){
+                        $(`
+                        <section>
+                            <header>
+                                <h1>${articles.title}</h1>
+                            </header>
+                            <article>
+                                ${articles.body}
+                            </article>
+                        </section>
+                    `).appendTo( $('main'));
+                    if (index === 10){
+                        return false;
+                    }
+                    }) //end boucle each
+            }); // end fonction anonyme ajax
+
+            // mark.js
+            $(function() {
+
+                var mark = function() {
+
+                // Read the keyword
+                var keyword = $("input[name='keyword']").val();
+
+                // Remove previous marked elements and mark
+                // the new keyword inside the context
+                $("main").unmark({
+                    done: function() {
+                    $("main").mark(keyword);
+                    }
+                });
+                };
+                $("input[name='keyword']").on("input", mark);
+                });
 
 
-        }); // end jQuery
-
+    }); // end jQuery
+        
     </script>
 
 </body>
