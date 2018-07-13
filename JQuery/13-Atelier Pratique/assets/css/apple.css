@@ -1,0 +1,63 @@
+body{
+    background-color: #000000;
+    font-family: 'PT Sans', sans-serif;
+}
+.navbar{
+    width: 100%;
+}
+.nav-item{
+    margin-left: 25px;
+    margin-right: 25px;
+}
+.nav-scroller .nav-link{
+        border: 1px solid white;
+}
+.titres{
+    text-align: center;
+    width: 100%;    
+}
+h2, h1 {
+    color: white;
+}
+h1{
+    font-size: 60px;
+}
+h2{
+    margin-top: 50px;
+    font-style: bold;
+}
+.titres a{
+    margin :0px 10px;
+}
+
+.degrade{
+    background-image: linear-gradient(#fdfdfd, #efefefe3);
+    width: 100%;
+    height: 360px;
+}
+.iphone{
+    width: 25%;
+}
+.presentation{
+    margin: 50px;
+    width: 17%;
+}
+.centrage{
+    width: 35%;
+    padding-bottom: 50px;
+}
+.form-group, .form-row{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+button{
+    margin-top: 20px;
+}
+footer{
+    /* margin-top: 50px; */
+    margin-bottom: 0;
+    text-align: center;
+    align-items: center; 
+    height: 100%;
+    padding-top: 5px;
+}

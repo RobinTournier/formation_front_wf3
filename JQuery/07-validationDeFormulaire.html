@@ -154,11 +154,11 @@
                 // -- Validation du Nom
                 if( nom.val().length === 0 ) {
                     nom.addClass('is-invalid');
-                    // $(`
-                    //     <div class="invalid-feedback">
-                    //         Vous devez saisir votre nom.
-                    //     </div>
-                    // `).appendTo(nom.parent());
+                     $(`
+                         <div class="invalid-feedback">
+                            Vous rentrer au moins 15 caractè.
+                         </div>
+                     `).appendTo(nom.parent());
                 }
 
                 // -- Validation du Prénom

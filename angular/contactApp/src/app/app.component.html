@@ -1,0 +1,39 @@
+<div class="container">
+  <header class="mb-4">
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand">
+          <!-- Avec l'expression {{}} j'affiche le contenu de la variable dazns l'app -->
+          {{title}}
+
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <ul>
+          <a *ngFor="let contact of mesContacts"
+             (click)="displayContact(contact)"
+             [class.active]="contact === contactActif"
+            class="list-group-item list-group-item-action" href="javascript:void(0)">{{contact.name}}
+          </a>
+      </ul>
+      <!--Lorsque l'venement unConactEstCree sera emit, la fonction ajouterContactDansListe() sera déclachée;
+      Elle Prendra en paramètre $event, qui contitient les données de notre évènement unContactEstCree.
+      A savoir, le nouveau contact-->
+      <app-ajouter (unContactEstCree)="ajouterContactDansListe($event)"></app-ajouter>
+    </div>
+    <div class="col-sm-8">
+      <app-profil [contact]="contactActif"></app-profil>
+    </div>
+
+  </div>
+
+  <pre><!--{{mesContacts | json}} --></pre>
+
+  <footer class="text-center">
+    Copyright &copy; 2018 - Paris IV - 3
+  </footer>
+</div>
